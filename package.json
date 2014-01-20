@@ -1,7 +1,7 @@
 {
-  "name": "application-name",
+  "name": "mean-redis",
+  "description": "MEAN app skeleton with Redis and Stylus",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "start": "node app.js"
   },
