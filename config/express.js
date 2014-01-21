@@ -3,7 +3,7 @@
 var express = require('express')
 ,	cons	= require('consolidate');
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
 
 	app.use(express.compress());
 
@@ -21,6 +21,11 @@ module.exports = function(app) {
 		app.use(express.bodyParser());
 		app.use(express.methodOverride());
 		//app.use(express.session());
+
+		app.use(passport.initialize());
+		app.use(passport.session());
+		
+		app.use(app.router);
 	});
 
 };
