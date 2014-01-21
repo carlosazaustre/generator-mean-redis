@@ -8,8 +8,8 @@ var express 	= require('express')
 , 	fs			= require('fs')
 
 ,	env 		= process.env.NODE_ENV || 'development'
-, 	config		= require('./config/config');
-// TODO añadir auth middlewares
+, 	config		= require('./config/config')
+,	auth		= require('./config/middlewares/authorization');
 
 // BD Connection
 var db = mongoose.connect(config.db);
