@@ -4,14 +4,19 @@
 var express 	= require('express')
 ,	passport 	= require('passport')
 , 	mongoose 	= require('mongoose')
-, 	logger 		= require('mean-logger');
+, 	logger 		= require('mean-logger')
+, 	fs			= require('fs');
 
 // TODO añadir config, auth, y ENV
 
-// TODO añadir conexión a base de datos
+// BD Connection
+var db = mongoose.connect('');
 
-// TODO añadir modelos
-
+// BD Models
+var modelsPath = __dirname + '/app/models/';
+fs.readdirSync(modelsPath).forEach(function(file) {
+	require(modelsPath + file);
+});
 
 var app = express();
 
