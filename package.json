@@ -14,6 +14,7 @@
     "passport-twitter": "~1.0.2",
     "passport-facebook": "~1.0.2",
     "mongoose": "~3.8.4",
-    "mean-logger": "0.0.1"
+    "mean-logger": "0.0.1",
+    "async": "~0.2.9"
   }
 }
