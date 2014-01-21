@@ -10,7 +10,7 @@ var express = require('express')
 var app = express();
 
 // Express config settings
-require('./app/app')(app)
+require('./config/express')(app)
 
 var port = 3000;
 app.listen(port);

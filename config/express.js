@@ -5,13 +5,7 @@ var express = require('express')
 
 module.exports = function(app) {
 
-	app.use(express.compress({
-		filter: function(req, res) {
-			return (/json|text|javascript|css/)
-				.test(res.getHeader('Content-Type');
-		}
-		level: 9
-	}));
+	app.use(express.compress());
 
 	app.use(express.favicon());
 	app.use(express.static(__dirname + '/public'));
@@ -26,7 +20,7 @@ module.exports = function(app) {
 		app.use(express.cookieParser());
 		app.use(express.bodyParser());
 		app.use(express.methodOverride());
-		app.use(express.session({}));
+		//app.use(express.session());
 	});
 
 };
