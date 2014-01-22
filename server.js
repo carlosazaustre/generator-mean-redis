@@ -3,8 +3,17 @@
 // Module dependencies.
 var express 	= require('express');
 
-var app = express()
+var app = express();
 
-app.listen('3000', function() {
-	console.log('Express App listening at http://localhost:3000');
+// Express settings
+require('./config/express')(app);
+
+app.get('/', function(req, res) {
+	res.render('index', {});
 });
+
+app.listen(app.get('port'), function() {
+	console.log('Express App listening at port ' + app.get('port'));
+});
+
+exports = module.exports = app;
