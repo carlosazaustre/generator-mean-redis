@@ -1,10 +1,10 @@
 'use strict';
 
 // Module dependencies.
-var express 	= require('express')
-,	fs			= require('fs')
-,	path 		= require('path')
-,	mongoose	= require('mongoose');
+var express		= require('express'),
+	fs			= require('fs'),
+	path		= require('path'),
+	mongoose	= require('mongoose');
 
 var app = express();
 
@@ -12,11 +12,8 @@ var app = express();
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var config = require('./config/config');
 
-// Express settings
-require('./config/express')(app);
-
 // DB Connection
-var db = mongoose.connect(config.db);
+mongoose.connect(config.db);
 
 // Models
 var modelsPath = path.join(__dirname, 'app/models');
@@ -35,6 +32,9 @@ var walk = function(path) {
 };
 walk(modelsPath);
 
+// Express settings
+require('./config/express')(app);
+
 // Routes
 var routesPath = path.join(__dirname, 'app/routes');
 var walk = function(path) {
@@ -51,7 +51,7 @@ var walk = function(path) {
 		}
 	});
 };
-walk(routesPath); 
+walk(routesPath);
 
 // Start the server and app.
 app.listen(app.get('port'), function() {
