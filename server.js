@@ -8,11 +8,15 @@ var express 	= require('express')
 
 var app = express();
 
+// Load configurations
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var config = require('./config/config');
+
 // Express settings
 require('./config/express')(app);
 
 // DB Connection
-var db = mongoose.connect('http://localhost:27017/mean-dev');
+var db = mongoose.connect(config.db);
 
 // Models
 var modelsPath = path.join(__dirname, 'app/models');
@@ -49,6 +53,7 @@ var walk = function(path) {
 };
 walk(routesPath); 
 
+// Start the server and app.
 app.listen(app.get('port'), function() {
 	console.log('Express App listening at port ' + app.get('port'));
 });

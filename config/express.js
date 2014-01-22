@@ -2,7 +2,8 @@
 
 var express = require('express')
 ,	path 	= require('path')
-,	swig	= require('swig');
+,	swig	= require('swig')
+,	config 	= require('./config');
 
 module.exports = function(app) {
 	app.use(express.logger('dev'));	
@@ -16,7 +17,7 @@ module.exports = function(app) {
 	app.set('view engine', 'html');
 	app.set('views', path.join(__dirname, '../app/views'));
 
-	app.set('port', 3000);
+	app.set('port', config.port);
 
 	app.enable('jsonp callback');
 
