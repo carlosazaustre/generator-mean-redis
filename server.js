@@ -6,6 +6,7 @@ var express 	= require('express')
 , 	mongoose 	= require('mongoose')
 , 	logger 		= require('mean-logger')
 , 	fs			= require('fs')
+, 	path 		= require('path')
 
 ,	env 		= process.env.NODE_ENV || 'development'
 , 	config		= require('./config/config')
@@ -15,7 +16,7 @@ var express 	= require('express')
 var db = mongoose.connect(config.db);
 
 // BD Models
-var modelsPath = __dirname + '/app/models/';
+var modelsPath = path.join(config.root, '/app/models/');
 fs.readdirSync(modelsPath).forEach(function(file) {
 	require(modelsPath + file);
 });
@@ -25,12 +26,10 @@ var app = express();
 require('./config/passport')(passport);
 require('./config/express')(app, passport);
 require('./config/routes')(app, passport, auth);
-// TODO añadir rutas
 
 // Start app by listening at port and logger 
-var port = config.port;
-app.listen(port, function() {
-	console.log('Express server started on port ' + port);	
+app.listen(config.port, function() {
+	console.log('Express server started on port ' + config.port);	
 });
 
 logger.init(app, passport, mongoose);

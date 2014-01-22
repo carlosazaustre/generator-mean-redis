@@ -17,7 +17,7 @@ exports.login = function(req, res) {
 
 // Register Form
 exports.register = function(req, res) {
-	res.render('users/register'), {
+	res.render('users/register', {
 		title: 'Register'
 	});
 };

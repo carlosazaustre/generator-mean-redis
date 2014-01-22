@@ -3,7 +3,8 @@
 var mongoose 			= require('mongoose')
 ,	TwitterStrategy 	= require('passport-twitter')
 ,	FacebookStrategy 	= require('passport-facebook')
-, 	User				= mongoose.model('User');
+, 	User				= mongoose.model('User')
+,	config				= require('./config');
 
 module.exports = function(passport) {
 	// Serialize sessions
@@ -21,9 +22,9 @@ module.exports = function(passport) {
 
 	// Twitter Strategy (Login and Sign-up with Twitter)
 	passport.use(new TwitterStrategy({
-		consumerKey 	: '',
-		consumerSecret 	: '',
-		callbackURL 	: ''
+		consumerKey 	: config.twitter.clientID,
+		consumerSecret 	: config.twitter.clientSecret,
+		callbackURL 	: config.twitter.callbackURL
 	},
 	function(token, tokenSecret, profile, done) {
 		User.findOne({
@@ -53,9 +54,9 @@ module.exports = function(passport) {
 
 	// Facebook Strategy (Login and Sign-up with Facebook)
 	passport.use(new FacebookStrategy({
-		clientID 	: '',
-		clientSecret: '',
-		callbackURL : ''
+		clientID 	: config.facebook.clientID,
+		clientSecret: config.facebook.clientSecret,
+		callbackURL : config.facebook.callbackURL
 	},
 	function(accessToken, refreshToken, profile, done) {
 		User.findOne({
