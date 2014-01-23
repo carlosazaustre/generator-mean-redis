@@ -8,14 +8,8 @@ exports.authCallback = function(req, res) {
 };
 
 exports.login = function(req, res) {
-	res.render('users/login', {
-		title: 'Login'
-	});
-};
-
-exports.register = function(req, res) {
-	res.render('users/register', {
-		title: 'Register'
+	res.render('users/auth', {
+		title: 'Login & Sign-up'
 	});
 };
 

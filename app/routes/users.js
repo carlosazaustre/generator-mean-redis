@@ -4,8 +4,7 @@ var users = require('../controllers/users');
 
 module.exports = function(app, passport) {
 
-	app.get('/login', users.login);
-	app.get('/register', users.register);
+	app.get('/auth', users.login);
 	app.get('/logout', users.logout);
 	app.get('/users/me', users.me);
 
