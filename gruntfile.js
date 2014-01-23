@@ -11,9 +11,31 @@ module.exports = function(grunt) {
 		// Project configuration
 		pkg: grunt.file.readJSON('package.json'),
 
+		stylus: {
+			compile: {
+				options: {
+					paths: './app/stylus/**',
+					'include css': true
+				},
+				files: {
+					'./public/css/style.css': './app/stylus/main.styl'
+				}
+			}
+		},
+
+		watch: {
+			css: {
+				files: './app/stylus/**',
+				tasks: ['stylus'],
+				options: {
+					livereload: true
+				}
+			}
+		},
+
 		jshint: {
 			all: {
-				src: ['gruntfile.js','server.js','config/**/*.js', 'app/**/*.js','public/**/*.js','test/**/*.js'],
+				src: ['gruntfile.js','server.js','config/**/*.js', 'app/**/*.js','public/js/**/*.js','test/**/*.js'],
 				options: {
 					jshintrc: true
 				}
@@ -30,14 +52,24 @@ module.exports = function(grunt) {
 					cleanBowerDir: true
 				}
 			}
+		},
+
+		concurrent: {
+			tasks: ['watch'],
+			options: {
+				logConcurrentOutput: true
+			}
 		}
 
 	});
 
+	// Bower Task
+	grunt.registerTask('install', ['bower']);
+
 	// Test Task
 	grunt.registerTask('test', ['jshint']);
 
-	// Bower Task
-	grunt.registerTask('install', ['bower']);
+	// Start server and concurrent
+	grunt.registerTask('default', ['jshint', 'concurrent']);
 
 };
