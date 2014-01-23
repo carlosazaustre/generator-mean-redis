@@ -18,11 +18,26 @@ module.exports = function(grunt) {
 					jshintrc: true
 				}
 			}
+		},
+
+		bower: {
+			install: {
+				options: {
+					targetDir: './public/vendor',
+					layout: 'byComponent',
+					install: true,
+					verbose: true,
+					cleanBowerDir: true
+				}
+			}
 		}
 
 	});
 
 	// Test Task
 	grunt.registerTask('test', ['jshint']);
+
+	// Bower Task
+	grunt.registerTask('install', ['bower']);
 
 };

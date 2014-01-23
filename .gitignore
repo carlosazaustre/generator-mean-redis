@@ -14,7 +14,4 @@ results
 npm-debug.log
 node_modules
 
-config/env/development.json
-config/env/production.json
-config/env/test.json
-config/env/travis.json
+public/vendor
