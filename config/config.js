@@ -1,7 +1,7 @@
 'use strict';
 
-var _ 		= require('lodash')
-,	path 	= require('path');
+var _=		require('lodash'),
+	path	= require('path');
 
 module.exports = _.extend(
 

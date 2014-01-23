@@ -4,7 +4,8 @@
 var express		= require('express'),
 	fs			= require('fs'),
 	path		= require('path'),
-	mongoose	= require('mongoose');
+	mongoose	= require('mongoose'),
+	passport	= require('passport');
 
 var app = express();
 
@@ -33,7 +34,8 @@ var walk = function(path) {
 walk(modelsPath);
 
 // Express settings
-require('./config/express')(app);
+require('./config/passport')(passport);
+require('./config/express')(app, passport);
 
 // Routes
 var routesPath = path.join(__dirname, 'app/routes');
