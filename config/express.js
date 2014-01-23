@@ -18,13 +18,12 @@ module.exports = function(app, passport) {
 	app.set('view engine', 'html');
 	app.set('views', path.join(__dirname, '../app/views'));
 
-
 	app.enable('jsonp callback');
 
 	app.configure(function() {
 		app.use(express.cookieParser());
 		
-		// express.bodyParser() Replaced with the following 
+		// express.bodyParser() Replaced with the followings 
 		app.use(express.urlencoded());
 		app.use(express.json());
 
@@ -32,13 +31,13 @@ module.exports = function(app, passport) {
 		
 		// Session settings
 		app.use(express.session({
+			key		: config.session.key,
+			secret	: config.session.secret,
 			store	: new RedisStore({
 				host : config.sessionStore.host,
 				port : config.sessionStore.port,
 				auth : config.sessionStore.auth
-			}),
-			key		: config.session.key,
-			secret	: config.session.secret
+			})
 		}));
 
 		app.use(helpers(config.app.name));

@@ -4,7 +4,7 @@ var mongoose	= require('mongoose'),
 	User		= mongoose.model('User');
 
 exports.authCallback = function(req, res) {
-	res.redirect('/');
+	res.redirect('/home');
 };
 
 exports.login = function(req, res) {
@@ -19,7 +19,7 @@ exports.logout = function(req, res) {
 };
 
 exports.session = function(req, res) {
-	res.redirect('/');
+	res.redirect('/home');
 };
 
 exports.me = function(req, res) {
