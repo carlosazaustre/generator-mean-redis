@@ -14,18 +14,18 @@ module.exports = function(grunt) {
 		stylus: {
 			compile: {
 				options: {
-					paths: './app/stylus/**',
+					paths: ['app/stylus/**/*.styl'],
 					'include css': true
 				},
 				files: {
-					'./public/css/style.css': './app/stylus/main.styl'
+					'public/css/style.css': 'app/stylus/main.styl'
 				}
 			}
 		},
 
 		watch: {
 			css: {
-				files: './app/stylus/**',
+				files: 'app/stylus/**',
 				tasks: ['stylus'],
 				options: {
 					livereload: true
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 		bower: {
 			install: {
 				options: {
-					targetDir: './public/vendor',
+					targetDir: 'public/vendor',
 					layout: 'byComponent',
 					install: true,
 					verbose: true,
@@ -69,8 +69,8 @@ module.exports = function(grunt) {
 
 	});
 
-	// Bower Task
-	grunt.registerTask('install', ['bower']);
+	// Bower Task and Stylus proccesor
+	grunt.registerTask('install', ['bower', 'stylus']);
 
 	// Test Task
 	grunt.registerTask('test', ['jshint']);
