@@ -1,10 +1,11 @@
 'use strict';
 
-var express = require('express'),
-	path	= require('path'),
-	swig	= require('swig'),
-	helpers	= require('view-helpers'),
-	config	= require('./config');
+var express		= require('express'),
+	RedisStore	= require('connect-redis')(express),
+	path		= require('path'),
+	swig		= require('swig'),
+	helpers		= require('view-helpers'),
+	config		= require('./config');
 
 module.exports = function(app, passport) {
 	app.set('showStackError', true);
@@ -26,10 +27,19 @@ module.exports = function(app, passport) {
 		// express.bodyParser() Replaced with the following 
 		app.use(express.urlencoded());
 		app.use(express.json());
-		
+
 		app.use(express.methodOverride());
 		
-		// session
+		// Session settings
+		app.use(express.session({
+			store	: new RedisStore({
+				host : config.sessionStore.host,
+				port : config.sessionStore.port,
+				auth : config.sessionStore.auth
+			}),
+			key		: config.session.key,
+			secret	: config.session.secret
+		}));
 
 		app.use(helpers(config.app.name));
 

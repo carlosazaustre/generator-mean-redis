@@ -5,7 +5,8 @@ var express		= require('express'),
 	fs			= require('fs'),
 	path		= require('path'),
 	mongoose	= require('mongoose'),
-	passport	= require('passport');
+	passport	= require('passport'),
+	logger		= require('mean-logger');
 
 var app = express();
 
@@ -59,5 +60,7 @@ walk(routesPath);
 app.listen(app.get('port'), function() {
 	console.log('Express App listening at port ' + app.get('port'));
 });
+
+logger.init(app, passport, mongoose);
 
 exports = module.exports = app;
