@@ -45,7 +45,7 @@ var walk = function(path) {
 		var stat = fs.statSync(newPath);
 		if(stat.isFile()) {
 			if (/(.*)\.(js$|coffee$)/.test(file)) {
-                require(newPath)(app); //passport
+                require(newPath)(app, passport);
             }
         // Middlewares is not a route itself    
 		} else if(stat.isDirectory() && file !== 'middlewares') {
