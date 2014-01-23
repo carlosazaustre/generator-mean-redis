@@ -22,9 +22,11 @@ module.exports = function(app, passport) {
 
 	app.configure(function() {
 		app.use(express.cookieParser());
+		
+		// express.bodyParser() Replaced with the following 
 		app.use(express.urlencoded());
 		app.use(express.json());
-		app.use(express.bodyParser());
+		
 		app.use(express.methodOverride());
 		
 		// session
