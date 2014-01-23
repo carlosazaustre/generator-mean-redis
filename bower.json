@@ -1,0 +1,10 @@
+{
+	"name": "MEAN-Redis",
+	"version": "0.0.1",
+	"dependencies": {
+		"normalize-css": "latest",
+		"modernizr": "latest",
+		"angular": "1.2.8",
+		"angular-route": "latest"
+	}
+}

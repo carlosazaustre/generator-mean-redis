@@ -2,7 +2,12 @@
 
 module.exports = function(grunt) {
 
+	require('load-grunt-tasks')(grunt, {
+		pattern: 'grunt-*'
+	});
+
 	grunt.initConfig({
+
 		// Project configuration
 		pkg: grunt.file.readJSON('package.json'),
 
@@ -16,9 +21,6 @@ module.exports = function(grunt) {
 		}
 
 	});
-
-	// Load NPM tasks
-	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
 	// Test Task
 	grunt.registerTask('test', ['jshint']);
