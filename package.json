@@ -20,14 +20,17 @@
 		"type": "git",
 		"url": "https://github.com/carlosazaustre/generator-mean-redis.git"
 	},
+    "scripts": {
+        "test": "mocha"
+    },
 	"dependencies": {
-
+        "yeoman-generator": "~0.14.0"
 	},
 	"devDependencies": {
-
+        "mocha": "~1.14.0"
 	},
 	"peerDependencies": {
-
+        "yo": ">=1.0.0"
 	},
 	"engines": {
 		"node": ">=0.10.0",
