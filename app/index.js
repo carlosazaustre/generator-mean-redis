@@ -68,5 +68,5 @@ MeanRedisGenerator.prototype.projectfiles = function projectfiles() {
     this.copy('_bower.json', 'bower.json');
     this.copy('_gruntfile.js', 'gruntfile.js');
     this.copy('_server.js', 'server.js');
-    this.copy('_README.md', 'README.md');
+    this.copy('_cREADME.md', 'README.md');
 };
