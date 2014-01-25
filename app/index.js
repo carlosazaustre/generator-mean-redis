@@ -9,7 +9,9 @@ var MeanRedisGenerator = module.exports = function MeanRedisGenerator(args, opti
   yeoman.generators.Base.apply(this, arguments);
 
   this.on('end', function () {
-    this.installDependencies({ skipInstall: options['skip-install'] });
+    this.installDependencies({
+        skipInstall: options['skip-install']
+    });
   });
 
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -23,32 +25,48 @@ MeanRedisGenerator.prototype.askFor = function askFor() {
   // have Yeoman greet the user.
   console.log(this.yeoman);
 
-  var prompts = [{
-    type: 'confirm',
-    name: 'someOption',
-    message: 'Would you like to enable this option?',
-    default: true
-  }];
+  var prompts = [
+      {
+        type: 'confirm',
+        name: 'herokuIntegration',
+        message: 'Are you planning to deply this project on Heroku?',
+        default: true
+      },
+    ];
 
   this.prompt(prompts, function (props) {
-    this.someOption = props.someOption;
+    this.herokuIntegration = props.herokuIntegration;
 
     cb();
   }.bind(this));
 };
 
 MeanRedisGenerator.prototype.app = function app() {
-  this.mkdir('app');
-  this.mkdir('app/templates');
+    this.mkdir('public');
+    this.mkdir('public/img');
+    this.mkdir('public/js');
+    this.mkdir('public/css');
+    this.mkdir('config');
+    this.mkdir('config/env');
+    this.mkdir('app');
+    this.mkdir('app/controllers');
+    this.mkdir('app/models');
+    this.mkdir('app/routes');
+    this.mkdir('app/stylus');
+    this.mkdir('app/views');
 
-  this.copy('_package.json', 'package.json');
-  this.copy('_bower.json', 'bower.json');
-  this.copy('gruntfile.js', 'gruntfile.js');
-  this.copy('server.js', 'server.js');
-  this.copy('README.md', 'README.md');
+    this.directory('public');
+    this.directory('config');
+    this.directory('routes');
+    this.directory('app');
 };
 
 MeanRedisGenerator.prototype.projectfiles = function projectfiles() {
-  this.copy('editorconfig', '.editorconfig');
-  this.copy('jshintrc', '.jshintrc');
+    this.copy('jshintrc', '.jshintrc');
+    this.copy('gitignore', '.gitignore');
+    this.copy('_package.json', 'package.json');
+    this.copy('_bower.json', 'bower.json');
+    this.copy('_gruntfile.js', 'gruntfile.js');
+    this.copy('_server.js', 'server.js');
+    this.copy('_README.md', 'README.md');
 };

@@ -1,5 +1,5 @@
 {
-  "name": "mean-redis",
+  "name": "<%= _.slugify(appname) %>",
   "description": "MEAN app skeleton with Redis and Stylus",
   "version": "0.0.1",
   "scripts": {
