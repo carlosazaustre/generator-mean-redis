@@ -30,7 +30,7 @@ MeanRedisGenerator.prototype.askFor = function askFor() {
         type: 'confirm',
         name: 'herokuIntegration',
         message: 'Are you planning to deply this project on Heroku?',
-        default: true
+        default: false
       },
     ];
 
@@ -42,12 +42,17 @@ MeanRedisGenerator.prototype.askFor = function askFor() {
 };
 
 MeanRedisGenerator.prototype.app = function app() {
+    // Public
     this.mkdir('public');
     this.mkdir('public/img');
     this.mkdir('public/js');
     this.mkdir('public/css');
+
+    // Express settings
     this.mkdir('config');
     this.mkdir('config/env');
+
+    // App
     this.mkdir('app');
     this.mkdir('app/controllers');
     this.mkdir('app/models');
@@ -62,11 +67,23 @@ MeanRedisGenerator.prototype.app = function app() {
 };
 
 MeanRedisGenerator.prototype.projectfiles = function projectfiles() {
+    // Dotfiles
     this.copy('jshintrc', '.jshintrc');
     this.copy('gitignore', '.gitignore');
+
+    // Package
     this.copy('_package.json', 'package.json');
+
+    // Front
     this.copy('_bower.json', 'bower.json');
     this.copy('_gruntfile.js', 'gruntfile.js');
+
+    // Express
     this.copy('_server.js', 'server.js');
-    this.copy('_cREADME.md', 'README.md');
+    this.copy('_README.md', 'README.md');
+
+    if(this.herokuIntegration) {
+        this.copy('_Procfile', 'Procfile');
+        this.copy('_env', '.env');
+    }
 };
