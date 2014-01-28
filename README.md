@@ -1,5 +1,4 @@
-# generator-mean-redis [![Build Status](https://secure.travis-ci.org/carlosazaustre/generator-mean-redis.png?branch=master)](https://travis-ci.org/carlosazaustre/generator-mean-redis)
-[![NPM version](https://badge.fury.io/js/generator-mean-redis.png)](http://badge.fury.io/js/generator-mean-redis)
+# generator-mean-redis [![Build Status](https://secure.travis-ci.org/carlosazaustre/generator-mean-redis.png?branch=master)](https://travis-ci.org/carlosazaustre/generator-mean-redis)[![NPM version](https://badge.fury.io/js/generator-mean-redis.png)](http://badge.fury.io/js/generator-mean-redis)
 
 A generator for [Yeoman](http://yeoman.io).
 

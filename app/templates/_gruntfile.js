@@ -2,80 +2,83 @@
 
 module.exports = function(grunt) {
 
-	require('load-grunt-tasks')(grunt, {
-		pattern: 'grunt-*'
-	});
+    // Load all grunt tasks
+    require('load-grunt-tasks')(grunt, {
+        pattern: 'grunt-*'
+    });
+    // Show elapsed time at the end
+    require('time-grunt')(grunt);
 
-	grunt.initConfig({
+    grunt.initConfig({
 
-		// Project configuration
-		pkg: grunt.file.readJSON('package.json'),
+        // Project configuration
+        pkg: grunt.file.readJSON('package.json'),
 
-		stylus: {
-			compile: {
-				options: {
-					paths: ['app/stylus/**/*.styl'],
-					'include css': true
-				},
-				files: {
-					'public/css/style.css': 'app/stylus/main.styl'
-				}
-			}
-		},
+        watch: {
+            options: {
+                livereload: true
+            },
+            css: {
+                files: 'app/stylus/**/*.styl',
+                tasks: ['stylus'],
+            }
+        },
 
-		watch: {
-			css: {
-				files: 'app/stylus/**',
-				tasks: ['stylus'],
-				options: {
-					livereload: true
-				}
-			}
-		},
+        stylus: {
+            compile: {
+                options: {
+                    paths: ['app/stylus/**/*.styl'],
+                    'include css': true
+                },
+                files: {
+                    'public/css/style.css': 'app/stylus/main.styl'
+                }
+            }
+        },
 
-		jshint: {
-			all: {
-				src: ['gruntfile.js','server.js','config/**/*.js', 'app/**/*.js','public/js/**/*.js','test/**/*.js'],
-				options: {
-					jshintrc: true
-				}
-			}
-		},
+        jshint: {
+            all: {
+                src: ['gruntfile.js','server.js','config/**/*.js', 'app/**/*.js','public/js/**/*.js','test/**/*.js'],
+                options: {
+                    jshintrc: true
+                }
+            }
+        },
 
-		bower: {
-			install: {
-				options: {
-					targetDir: 'public/vendor',
-					layout: 'byComponent',
-					install: true,
-					verbose: true,
-					cleanBowerDir: true
-				}
-			}
-		},
+        bower: {
+            install: {
+                options: {
+                    targetDir: 'public/vendor',
+                    layout: 'byComponent',
+                    install: true,
+                    verbose: true,
+                    cleanBowerDir: true
+                }
+            }
+        },
 
-		nodemon: {
-			dev: {
-				script: 'server.js'
-			}
-		},
+        nodemon: {
+            dev: {
+                script: 'server.js'
+            }
+        },
 
-		concurrent: {
-			tasks: ['nodemon', 'watch'],
-			options: {
-				logConcurrentOutput: true
-			}
-		}
+        concurrent: {
+            tasks: ['nodemon', 'watch'],
+            options: {
+                logConcurrentOutput: true
+            }
+        }
 
-	});
+    });
 
-	// Bower Task and Stylus proccesor
-	grunt.registerTask('install', ['bower', 'stylus']);
+    // Bower Task and Stylus proccesor
+    grunt.registerTask('install', ['bower', 'stylus']);
 
-	// Test Task
-	grunt.registerTask('test', ['jshint']);
+    // Test Task
+    grunt.registerTask('test', ['jshint']);
 
-	// Start server and concurrent
-	grunt.registerTask('default', ['jshint', 'concurrent']);
+    // Start server and concurrent
+    grunt.registerTask('default', ['jshint', 'concurrent']);
 
 };
